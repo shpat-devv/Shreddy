@@ -20,6 +20,15 @@ class BoardListCreate(generics.ListCreateAPIView):
         else: 
             print(f"Error: {serializer.errors}")
 
+
+class BoardDelete(generics.DestroyAPIView):
+    serializer_class = BoardSerializer
+    permission_classes = IsAuthenticated
+
+    def get_queryset(self):
+        user = self.request.user
+        return Board.objects.filter(owner=user)
+    
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
