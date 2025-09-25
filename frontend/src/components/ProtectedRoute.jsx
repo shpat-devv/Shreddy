@@ -1,8 +1,8 @@
 import {Navigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
-import api from "../api"
+import api from "../api.js"
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
-import { useState, userEffect } from "react";
+import { useState, useEffect } from "react";
 
 // Wrapper component to protect routes that require authentication
 //TODO: Understand why this is needed
