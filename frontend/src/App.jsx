@@ -6,6 +6,9 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 
+//styles
+import './styles/root.css'
+
 function logout() {
   localStorage.clear; //TODO: Clear only the auth token
   return <Navigate to="/login" />

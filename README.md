@@ -1,6 +1,6 @@
 # Shreddy
 
-A serious, full-featured social media platform for skaters. Shreddy helps you find skate spots, connect with fellow skaters, and share your latest tricks—all in a Snapchat-like experience. Built with Django (backend) and React (frontend), Shreddy is designed for and by the skating community, with a mobile app coming soon.
+A full-featured social media platform for skaters. Shreddy helps you find skate spots, connect with fellow skaters, and share your latest tricks—all in a Snapchat-like experience. Built with Django (backend) and React (frontend), Shreddy is designed for and by the skating community, with a mobile app coming soon.
 
 ---
 
