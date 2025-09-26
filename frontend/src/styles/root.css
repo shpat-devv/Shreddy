@@ -6,6 +6,7 @@
 :root {
     --color-primary: #10b51d;
     --color-secondary: #6b03da;
+    --color-background: #222222;
     --font-family: 'Roboto', sans-serif;
     --font-family-slime-drip: "Slime Drip", cursive;
     --spacing-unit: 8px;

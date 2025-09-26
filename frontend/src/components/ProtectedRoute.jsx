@@ -1,36 +1,37 @@
-import {Navigate} from "react-router-dom";
-import {jwtDecode} from "jwt-decode";
-import api from "../api.js"
+import { Navigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import api from "../api.js";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useState, useEffect } from "react";
 
-// Wrapper component to protect routes that require authentication
-//TODO: Understand why this is needed
+//Wrapper component to protect pages that require authentication
+function ProtectedRoute({ children }) {
+    const [isAuthorized, setIsAuthorized] = useState(null); 
 
-function ProtectedRoute({children}) {
-    const [isAuthorized, setIsAuthorized] = useState(false);
-
-    useEffect(() => { // On component mount, check authentication status
-        auth().catch(console.error);
+    useEffect(() => { 
+        auth().catch((err) => {
+            console.error("Auth check failed:", err);
+            setIsAuthorized(false);
+        });
     }, []);
 
     const refreshToken = async () => {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+        if (!refreshToken) return false;
+
         try {
-            const response = await api.post("/api/token/refresh/", { refresh: refreshToken }); // Retrieves new access token
+            const response = await api.post("/api/token/refresh/", { refresh: refreshToken });
             if (response.status === 200) {
                 localStorage.setItem(ACCESS_TOKEN, response.data.access);
                 setIsAuthorized(true);
-            } else {
-                setIsAuthorized(false);
-                console.error("Failed to refresh token:", response);
+                return true;
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.error("Token refresh failed:", error);
-            setIsAuthorized(false);
         }
-    }
+        setIsAuthorized(false);
+        return false;
+    };
 
     const auth = async () => {
         const refresh = localStorage.getItem(REFRESH_TOKEN);
@@ -38,20 +39,20 @@ function ProtectedRoute({children}) {
             setIsAuthorized(false);
             return;
         }
-        
-        const decoded = jwtDecode(refresh);
-        const refreshExp = decoded.exp
-        const currentTime = Date.now() / 1000; // Convert to seconds
 
-        if (refreshExp < currentTime) {
+        const decoded = jwtDecode(refresh);
+        const refreshExp = decoded.exp;
+        const currentTime = Date.now() / 1000;
+
+        if (refreshExp > currentTime) {
             await refreshToken();
         } else {
-            setIsAuthorized(true); 
+            setIsAuthorized(false);
         }
-    }
+    };
 
-    if (!isAuthorized) {
-        return <div>Loading...</div>; 
+    if (isAuthorized === null) {
+        return <h1>Loading...</h1>; // Show a loading state until auth is checked
     }
 
     return isAuthorized ? children : <Navigate to="/login" />;
