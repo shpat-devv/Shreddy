@@ -17,7 +17,7 @@
 }
 
 .formContainer h1 {
-  font-family: var(--font-family-slime-drip);
+  font-family: var(--font-title);
   color: var(--color-primary);
   font-size: 4em;
   margin-bottom: 200px;

@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Slime Drip";
-    src: url("../assets/fonts/SlimeDrip.ttf") format("truetype");
+    src: url("/public/assets/fonts/SlimeDrip.ttf") format("truetype");
 }
 
 :root {
@@ -8,7 +8,7 @@
     --color-secondary: #6b03da;
     --color-background: #222222;
     --font-family: 'Roboto', sans-serif;
-    --font-family-slime-drip: "Slime Drip", cursive;
+    --font-title: "Slime Drip", cursive;
     --spacing-unit: 8px;
     --border-radius: 4px;
 }

@@ -52,7 +52,7 @@ function ProtectedRoute({ children }) {
     };
 
     if (isAuthorized === null) {
-        return <h1>Loading...</h1>; // Show a loading state until auth is checked
+        return <h1>Loading...</h1>; 
     }
 
     return isAuthorized ? children : <Navigate to="/login" />;
