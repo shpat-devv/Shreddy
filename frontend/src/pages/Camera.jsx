@@ -11,17 +11,35 @@ export default function Camera() {
     title: "Camera",
     button1: { 
       iconImg: "/assets/icons/adduser.png", 
-      onclick: () => setShowAddList(true)  // 👈 show modal
+      onclick: () => setShowAddList(true) 
     },
-    button3: { iconImg: "/assets/icons/settings.png", onclick: () => settings() },
-    button4: { iconImg: "/assets/icons/profile.png", onclick: () => profile() },
+    button3: {
+      iconImg: "/assets/icons/settings.png",
+      onclick: () => window.location.href = "/settings"
+    },
+    button4: {
+      iconImg: "/assets/icons/profile.png",
+      onclick: () => profile()
+    },
   };
 
   const footerItems = {
-    button1: { iconImg: "/assets/icons/map.png", onclick: () => routeMap() },
-    button2: { iconImg: "/assets/icons/chat.png", onclick: () => routeChat() },
-    button3: { iconImg: "/assets/icons/camera.png", onclick: () => routeCamera() },
-    button4: { iconImg: "/assets/icons/content.png", onclick: () => routeContent() },
+    button1: {
+      iconImg: "/assets/icons/map.png",
+      onclick: () => routeMap()
+    },
+    button2: {
+      iconImg: "/assets/icons/chat.png",
+      onclick: () => routeChat()
+    },
+    button3: {
+      iconImg: "/assets/icons/camera.png",
+      onclick: () => routeCamera()
+    },
+    button4: {
+      iconImg: "/assets/icons/content.png",
+      onclick: () => routeContent()
+    },
   };
 
   return (

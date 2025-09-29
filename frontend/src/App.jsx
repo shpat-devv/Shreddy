@@ -4,10 +4,12 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Camera from './pages/Camera'
 import NotFound from './pages/NotFound'
+import Settings from './pages/Settings'
 import ProtectedRoute from './components/ProtectedRoute'
 
 //styles
 import './styles/root.css'
+import './styles/general.css'
 
 function logout() {
   localStorage.clear; //TODO: Clear only the auth token
@@ -23,7 +25,8 @@ function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Camera /></ProtectedRoute>} /> 
+          <Route path="/" element={<ProtectedRoute><Camera /></ProtectedRoute>} />
+          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} /> 
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<logout />} />
           <Route path="/register" element={<RegisterAndLogout />} />

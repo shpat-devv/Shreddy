@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Board
+from .models import Setting
 
-#TODO: understand serializers
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -14,8 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
 
-class BoardSerializer(serializers.ModelSerializer):
+class SettingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Board
-        fields = ["id", "name", "age", "owner"]
-        extra_kwargs = {"owner": {"read_only": True}}
+        model = Setting
+        fields = ["username"]
