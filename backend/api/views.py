@@ -30,19 +30,13 @@ class BoardDelete(generics.DestroyAPIView):
         return Board.objects.filter(owner=user)
 ''' 
 
-class SettingCreate(generics.ListCreateAPIView):
+class UserSettingView(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
     serializer_class = SettingSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        user = self.request.user
-        return Setting.objects.filter(username=user)
-    
-    def perform_create(self, serializer):
-        if serializer.is_valid():
-            serializer.save(username=self.request.user)
-        else:
-            print(f"Error: {serializer.errors}")
+    def get_object(self):
+        obj, created = Setting.objects.get_or_create(username=self.request.user )
+        return obj
 
 
 class CreateUserView(generics.CreateAPIView):
