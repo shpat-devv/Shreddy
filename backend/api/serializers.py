@@ -16,4 +16,8 @@ class UserSerializer(serializers.ModelSerializer):
 class SettingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Setting
-        fields = ["username"]
+        fields = ["pfp_url", "bio", "country", "birthday", "show_location", "allow_adds", "username"]
+        extra_kwargs = {"username": {"read_only": True}}
+    def create(self, validated_data):
+        setting = Setting.objects.create(**validated_data)
+        return setting

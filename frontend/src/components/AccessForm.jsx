@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import { ACCESS_TOKEN, REFRESH_TOKEN, USER_NAME } from "../constants";
 import styles from "../styles/components/AccessForm.module.css";
 import api from "../api.js";
 
@@ -22,6 +22,7 @@ export default function Form({ route, method }) {
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                localStorage.setItem(USER_NAME, username);
                 navigate("/"); 
             } else {
                 navigate("/login");

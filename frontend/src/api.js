@@ -1,5 +1,3 @@
-//TODO: Understand interceptors (axios)
-
 import axios from "axios";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
 
